@@ -14,7 +14,7 @@
 <h3> <a href="/groups/<%=group.id%>"> <%= group.name%> </a></h3>
 
 
-<% if @user.id == group.user.id && group.user.id != @user.id %>
+<% if @user.id == group.user.id %>
 <a href="/join/<%=group.id%>" data-method="post"><button type="submit" class="btn btn-success">Join</button></a>
 
   <% else %>
