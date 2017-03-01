@@ -1,0 +1,20 @@
+<div class="container">
+<div class="page-header">
+  <p class="text-right"> <a href='/logout'>Logout</a> </p>
+  <p class="text-right"> <a href='/dashboard'>Dashboard</a> </p>
+
+</div>
+
+<h1> Group information page </h1>
+<h3>Group name:</h3>   <br>
+  <%= @group.name %><br>
+
+<h3>Group description:</h3>
+<%= @group.desc %><br>
+
+
+
+<h3>Members</h3>
+<% @users_in_group.each do |user| %>
+  <p><%= user.f_name %> <%= user.l_name %></p>
+<% end %>

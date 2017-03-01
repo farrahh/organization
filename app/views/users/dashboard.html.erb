@@ -1,0 +1,67 @@
+<div class="container">
+
+<div class="page-header">
+  <p class="text-right"> <a href='/logout'>Logout</a> </p>
+  <h1> Hello, <%= @user.f_name%></h1>
+</div>
+<div class='col-md-6'>
+  <div class="panel panel-default">
+  <div class="panel-body">
+
+<h2> List of Groups </h2>
+
+<% @groups.each do |group| %>
+<h3> <a href="/groups/<%=group.id%>"> <%= group.name%> </a></h3>
+
+
+<% if @all_joins[0].user.id == group.user.id && group.user.id != @user.id %>
+<a href="/join/<%=group.id%>" data-method="post"><button type="submit" class="btn btn-success">Join</button></a>
+
+  <% else %>
+<a href="/unjoin/<%=group.id%>" data-method="post"><button type="submit" class="btn btn-success">Unjoin</button></a>
+<% end %>
+
+<% if @user.id == group.user.id%>
+  <a href="/destroy/dashboard/<%=group.id%>" data-method="post"><button type="submit" class="btn btn-danger">Delete</button></a>
+  <% end %>
+
+<h5> Members: <%=group.joins.count %></h5>
+<h5>  <%=group.desc %> </h5>
+<!-- <%= group.user.f_name%> -->
+
+<%end%>
+
+
+</div>
+</div>
+</div>
+
+
+
+
+<div class='col-md-1'></div>
+<!-- login -->
+
+<div class='col-md-5'>
+
+  <div class="panel panel-default">
+
+  <div class="panel-body">
+
+<form action='/group_create' method='post'>
+<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+<div class="form-group">
+  <label for="">Organization name:</label>
+  <input type="text" class="form-control" id="name" name="name" style="width: 300px">
+</div>
+<div class="form-group">
+  <label for="">Description:</label>
+  <input type="text" class="form-control" id="desc" name="desc" style="width: 300px">
+</div>
+<button type="submit" class="btn btn-default">Create!</button>
+</form>
+</div>
+</div>
+
+</div>
+</div>
